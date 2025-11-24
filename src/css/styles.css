@@ -180,6 +180,12 @@ main {
   color: var(--muted-foreground);
 }
 
+.profile-results {
+  width: 100%;
+  max-width: 800px;
+  margin-top: var(--spacing-xl);
+}
+
 .profile-results .loading {
   font-size: var(--font-lg);
   font-weight: 500;
@@ -203,4 +209,83 @@ main {
 .profile-counters span {
   font-size: 2rem;
   font-weight: bold;
+}
+
+/* Repositórios: grid e cards com 'pills' para cada estatística */
+.profile-repositories {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.profile-repositories h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: var(--font-lg);
+}
+
+.profile-repositories .repositories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  margin: 0.5rem 0 2rem;
+}
+
+.repo-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.repo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.repo-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--primary);
+  word-break: break-word;
+}
+
+.repo-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.repo-stats span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.repo-stats span svg,
+.repo-stats span img {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 520px) {
+  .profile-counters {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .profile-counters span {
+    font-size: 1.5rem;
+  }
 }

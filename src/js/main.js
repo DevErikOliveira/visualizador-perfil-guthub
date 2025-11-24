@@ -1,4 +1,4 @@
-import { fetchGithubUser } from './api.js';
+import { fetchGithubUser, fetchGithubRepos } from './api.js';
 import { getElements, renderProfile, clearProfile, showAlert } from './ui.js';
 
 const { btnSearch, inputSearch, profileResults } = getElements();
@@ -16,7 +16,9 @@ async function handleSearch() {
 
   try {
     const userData = await fetchGithubUser(username);
-    renderProfile(profileResults, userData);
+    const userRepos = await fetchGithubRepos(username);
+    console.log('Repositórios do usuário:', userRepos);
+    renderProfile(profileResults, userData, userRepos);
   } catch (err) {
     console.error('Erro ao buscar o perfil do GitHub:', err);
     if (err && err.status === 404) showAlert('Usuário não encontrado. Verifique o nome e tente novamente.');

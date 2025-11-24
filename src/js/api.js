@@ -18,3 +18,12 @@ export async function fetchGithubUser(username) {
 }
 
 // exportações futuras: buscar repositórios, seguidores, etc.
+
+
+export async function fetchGithubRepos(username) {
+  const res = await fetch(`${baseURL}/users/${encodeURIComponent(username)}/repos?per_page=10&sort=created`);
+  if (!res.ok) {
+    throw new Error(`Erro ao buscar repositórios: ${res.status}`);
+  }
+  return await res.json();
+}
